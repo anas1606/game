@@ -1,0 +1,83 @@
+<section class="bgimage spad set-bg" data-setbg="assets/img/review-bg.png">
+  <div class="container row" style="padding-top: 20%">
+    <div class="section-title col-5">
+      <div class="box" *ngIf="login">
+        <h2>Login</h2>
+        <form>
+          <div class="inputBox">
+            <input
+              type="text"
+              name="text"
+              required
+              onkeyup="this.setAttribute('value', this.value);"
+              value=""
+            />
+            <label>Username</label>
+          </div>
+          <div class="inputBox">
+            <input
+              type="password"
+              name="password"
+              required
+              value=""
+              onkeyup="this.setAttribute('value', this.value);"
+              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+              title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+            />
+            <label>Password</label>
+          </div>
+          <input type="submit" name="sign-in" value="Sign In" />
+        </form>
+      </div>
+      <div class="box" *ngIf="!login">
+        <h2>Register</h2>
+        <form>
+          <div class="inputBox">
+            <input
+              type="text"
+              name="text"
+              required
+              onkeyup="this.setAttribute('value', this.value);"
+              value=""
+            />
+            <label>FirstName <span style="color: red;">*</span></label>
+          </div>
+          <div class="inputBox">
+            <input
+              type="text"
+              name="text"
+              required
+              onkeyup="this.setAttribute('value', this.value);"
+              value=""
+            />
+            <label>LastName <span style="color: red;">*</span></label>
+          </div>
+          <div class="inputBox">
+            <input
+              type="text"
+              name="text"
+              required
+              onkeyup="this.setAttribute('value', this.value);"
+              value=""
+            />
+            <label>Username <span style="color: red;">*</span></label>
+          </div>
+          <div class="inputBox">
+            <input
+              type="password"
+              name="password"
+              required
+              value=""
+              onkeyup="this.setAttribute('value', this.value);"
+              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}"
+              title="Must contain at least one number and one uppercase and lowercase letter, and at least 4 or more characters"
+            />
+            <label>Password <span style="color: red;">*</span></label>
+          </div>
+          <input type="submit" name="sign-in" value="Sign Up" />
+        </form>
+      </div>
+    </div>
+    <div class="row"></div>
+  </div>
+</section>

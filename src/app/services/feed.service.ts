@@ -12,18 +12,16 @@ export class FeedService {
 
   feed() {
     const headers = { 'Content-Type': 'application/json', 'Authorization': this.tokenService.getToken() };
-    /* this.http.post<any>('', body, { headers }).subscribe(data => {
-      this.tokenService.setToken(data.token);
-      this.router.navigate(["/home"])
-    }); */
+    return this.http.get<any>('http://localhost:8080/api/games', { headers });
   }
 
-  categoryFilterFeed(categorys: any) {
+  categoryFilterFeed(catid: any) {
     const headers = { 'Content-Type': 'application/json', 'Authorization': this.tokenService.getToken() };
-    /* this.http.post<any>('', body, { headers }).subscribe(data => {
-      this.tokenService.setToken(data.token);
-      this.router.navigate(["/home"])
-    }); */
+    return this.http.get<any>('http://localhost:8080/games/' + catid, { headers });
   }
-  
+
+  getCategoryList(){
+    const headers = { 'Content-Type': 'application/json', 'Authorization': this.tokenService.getToken() };
+    return this.http.get<any>('http://localhost:8080/game-category/', { headers });
+  }
 }

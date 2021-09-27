@@ -14,18 +14,17 @@ export class AuthService {
 
   login(body: any) {
     const headers = { 'Content-Type': 'application/json' };
-    console.log(body)
-    /* this.http.post<any>('', body, { headers }).subscribe(data => {
+    this.http.post<any>('http://localhost:8080/api/auth', body, { headers }).subscribe(data => {
       this.tokenService.setToken(data.token);
       this.router.navigate(["/home"])
-    }); */
+    }); 
   }
 
   register(data: any) {
     const headers = { 'Content-Type': 'application/json' };
-    /* this.http.post<any>('', body, { headers }).subscribe(data => {
+    this.http.post<any>('http://localhost:8080/api/register', data, { headers }).subscribe(data => {
       this.tokenService.setToken(data.token);
       this.router.navigate(["/home"])
-    }); */
+    });
   }
 }

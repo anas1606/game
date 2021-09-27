@@ -24,24 +24,22 @@
 <!-- Body -->
 <div class="row" style="height: 100%">
   <div class="col-4 p-0" align="left">
-    <div
-      class="bgimage spad set-bg"
-      data-setbg="assets/img/features/1.jpg"
-    ></div>
+    <div class="bgimage spad set-bg" data-setbg="gamedetail.gameTransectionList[0].gameVo.imageUrl"></div>
   </div>
 
   <div class="col-4 game-detail-bar">
     <div class="row">
       <div class="col-12">
         <h3 style="color: aliceblue; padding-top: 10%">
-          {{ gamedetail.name }}
+          {{ gamedetail.gameTransectionList[0].gameVo.title }}
         </h3>
       </div>
 
       <div class="col-12" style="padding-top: 10%; padding-bottom: 4%">
         <div class="action-button" align="center">
           <a href="/login" style="color: white">
-            {{ actions[gamedetail.action].name }} <span><i [class]="actions[gamedetail.action].icon"></i></span>
+            {{ actions[gamedetail.gameTransectionList[0].actionId].name }}
+            <span><i [class]="actions[gamedetail.gameTransectionList[0].actionId].icon"></i></span>
           </a>
         </div>
       </div>
@@ -68,12 +66,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let a of abcd; let i = index">
+          <tr *ngFor="let a of gamedetail.gameTransectionList; let i = index">
             <td class="pl-3">
-              <span>{{ a.date }}</span>
+              <span>{{ a.createdOn }}</span>
             </td>
             <td class="pl-3">
-              <span>{{ a.date }}</span>
+              <span>{{ actions[a.actionId].name }}</span>
             </td>
           </tr>
         </tbody>

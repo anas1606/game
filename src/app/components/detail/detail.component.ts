@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DetailService } from 'src/app/services/detail.service';
 
 @Component({
   selector: 'app-detail',
@@ -7,27 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailComponent implements OnInit {
 
-  constructor() { }
+  constructor(private detailService: DetailService) { }
 
   actions: any = [
     {},
-    { name: "Play Now", icon: "fa fa-play" },
+    { name: "Play", icon: "fa fa-play" },
     { name: "Pause", icon: "fa fa-pause" },
     { name: "Resume", icon: "fa fa-play" },
   ];
 
-  abcd: any = [
-    { "date": "2021-06-16", "action": 1 },
-    { "date": "2021-09-26", "action": 2 },
-    { "date": "2021-10-28", "action": 1 },
-  ];
-
-  gamedetail: any = {
-    "name": "This is the Test Game",
-    "action": 2
-  };
+  gamedetail: any;
 
   ngOnInit(): void {
+    this.detailService.detail().subscribe(data => {
+      this.gamedetail = data;
+    })
   }
 
 }

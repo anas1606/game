@@ -7,15 +7,13 @@ import { TokenService } from './token.service';
 })
 export class DetailService {
 
+  gameid: string = "";
   constructor(private http: HttpClient,
     private tokenService: TokenService) { }
 
   detail() {
     const headers = { 'Content-Type': 'application/json', 'Authorization': this.tokenService.getToken() };
     const id = this.tokenService.getUserId();
-    /* this.http.post<any>('', body, { headers }).subscribe(data => {
-      this.tokenService.setToken(data.token);
-      this.router.navigate(["/home"])
-    }); */
+    return this.http.post<any>('http://localhost:8080/api/games-transection-per-game/' + id + '/' + this.gameid, id, { headers });
   }
 }

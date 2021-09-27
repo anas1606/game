@@ -30,10 +30,10 @@
           <input
             type="checkbox"
             class="custom-control-input"
-            [value]="c.name"
+            [value]="c.gameCategoryId"
             name="category"
             (change)="oncategorySelect($event)"
-            [checked]="c.isSelected"
+            [checked]="selectedcategory == c.gameCategoryId"
           />
           <div class="custom-control-label">{{ c.name }}</div>
         </label>
@@ -47,57 +47,19 @@
   <div class="col-10">
     <section class="feature-section spad">
       <div class="container">
-        <div class="row">
+        <div class="row" *ngFor="let f of feed">
           <div class="col-lg-3 col-md-6 p-1">
             <div
               class="feature-item set-bg"
-              data-setbg="assets/img/features/1.jpg"
+              data-setbg="f.imageUrl"
             >
-              <span class="cata new">new</span>
+              <span class="cata new">f.gameCategory</span>
               <div class="fi-content text-white">
-                <h5><a href="/detail">Suspendisse ut justo tem por, rutrum</a></h5>
+                <h5><a href="/detail">f.name</a></h5>
                 <a href="/detail" class="fi-comment">more <span><i class="fa fa-arrow-right"></i></span></a>
               </div>
             </div>
-          </div>
-          <div class="col-lg-3 col-md-6 p-1">
-            <div
-              class="feature-item set-bg"
-              data-setbg="assets/img/features/2.jpg"
-            >
-              <span class="cata strategy">strategy</span>
-              <div class="fi-content text-white">
-                <h5><a href="/detail">Justo tempor, rutrum erat id, molestie</a></h5>
-                <a href="/detail" class="fi-comment">more <span><i class="fa fa-arrow-right"></i></span></a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 p-1">
-            <div
-              class="feature-item set-bg"
-              data-setbg="assets/img/features/3.jpg"
-            >
-              <span class="cata new">new</span>
-              <div class="fi-content text-white">
-                <h5>
-                  <a href="/detail">Nullam lacinia ex eleifend orci porttitor</a>
-                </h5>
-                <a href="/detail" class="fi-comment">more <span><i class="fa fa-arrow-right"></i></span></a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 p-1">
-            <div
-              class="feature-item set-bg"
-              data-setbg="assets/img/features/4.jpg"
-            >
-              <span class="cata racing">racing</span>
-              <div class="fi-content text-white">
-                <h5><a href="/detail">Lacinia ex eleifend orci suscipit</a></h5>
-                <a href="/detail" class="fi-comment">more <span><i class="fa fa-arrow-right"></i></span></a>
-              </div>
-            </div>
-          </div>
+          </div>>
         </div>
       </div>
     </section>

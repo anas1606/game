@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FeedService } from 'src/app/services/feed.service';
 
 @Component({
   selector: 'app-home',
@@ -7,59 +8,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  selectedcategory: string[] = [];
+  selectedcategory: string = "";
 
-  constructor() { }
-  category: any = [
-    { name: "All", isSelected: true },
-    { name: "Action", isSelected: false },
-    { name: "Racing", isSelected: false },
-    { name: "Puzzle", isSelected: false }
-  ];
-  feed : any;
+  constructor(private feedService: FeedService) { }
+  category: any;
+  feed: any;
 
   ngOnInit(): void {
+    this.feedService.getCategoryList().subscribe(data => { this.category = data });
+    this.feedService.feed().subscribe(data => {
+      this.feed = null;
+      this.feed = data;
+    });
   }
 
-// Check For Filter
+  // Check For Filter
   oncategorySelect(event: any) {
-    if (event.target.checked) {
-      if (event.target.value == "All") {
-        this.selectedcategory = [];
-        this.unCheckAll();
-        this.selectedcategory.push(event.target.value);
-      } else {
-        const index = this.selectedcategory.indexOf("All");
-        if (index > -1)
-          this.selectedcategory.splice(index, 1);
-        this.selectedcategory.push(event.target.value);
-        this.category[0].isSelected = false;
-        const idx = this.categoryIndex(event.target.value);
-        this.category[idx].isSelected = true;
-      }
-    } else {
-      const index = this.selectedcategory.indexOf(event.target.value);
-      this.selectedcategory.splice(index, 1);
-      this.category[0].isSelected = false
-    }
-    console.log(this.selectedcategory)
+    if (event.target.checked)
+      this.selectedcategory = event.target.value;
+    else
+      this.selectedcategory = "";
   }
 
   onCategoryFilter() {
-  }
-
-  private unCheckAll() {
-    for (var i = 0; i < this.category.length; i++) {
-      this.category[i].isSelected = false;
-    }
-    this.category[0].isSelected = true;
-  }
-
-  private categoryIndex(str: string): number {
-    for (var i = 0; i < this.category.length; i++) {
-      if (this.category[i].name == str)
-        return i;
-    }
-    return -1
+    this.feedService.categoryFilterFeed(this.selectedcategory).subscribe(data => {
+      this.feed = null;
+      this.feed = data;
+    });
   }
 }

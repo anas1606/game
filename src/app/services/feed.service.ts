@@ -17,4 +17,13 @@ export class FeedService {
       this.router.navigate(["/home"])
     }); */
   }
+
+  categoryFilterFeed(categorys: any) {
+    const headers = { 'Content-Type': 'application/json', 'Authorization': this.tokenService.getToken() };
+    /* this.http.post<any>('', body, { headers }).subscribe(data => {
+      this.tokenService.setToken(data.token);
+      this.router.navigate(["/home"])
+    }); */
+  }
+  
 }

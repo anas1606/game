@@ -17,10 +17,11 @@ export class HomeComponent implements OnInit {
     { name: "Puzzle", isSelected: false }
   ];
   feed : any;
-  
+
   ngOnInit(): void {
   }
 
+// Check For Filter
   oncategorySelect(event: any) {
     if (event.target.checked) {
       if (event.target.value == "All") {

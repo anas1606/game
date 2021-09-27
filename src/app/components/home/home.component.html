@@ -8,7 +8,9 @@
       <img src="assets/img/logo.png" alt="" />
     </a>
     <div class="user-panel">
-      <a href="/login"> Sign out <span><i class="fa fa-sign-out"></i></span> </a>
+      <a href="/login">
+        Sign out <span><i class="fa fa-sign-out"></i></span>
+      </a>
     </div>
 
     <div class="nav-switch">
@@ -17,52 +19,94 @@
   </div>
 </header>
 
-<section class="feature-section spad">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-3 col-md-6 p-0">
-        <div class="feature-item set-bg" data-setbg="assets/img/features/1.jpg">
-          <span class="cata new">new</span>
-          <div class="fi-content text-white">
-            <h5><a href="#">Suspendisse ut justo tem por, rutrum</a></h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <a href="#" class="fi-comment">3 Comments</a>
-          </div>
-        </div>
+<div class="row">
+  <div class="col-2 side-nav footer-top-section">
+    <div class="filter-content collapse show" id="collapse_2">
+      <div class="card-body">
+        <label
+          class="custom-control custom-checkbox"
+          *ngFor="let c of category"
+        >
+          <input
+            type="checkbox"
+            class="custom-control-input"
+            [value]="c.name"
+            name="category"
+            (change)="oncategorySelect($event)"
+            [checked]="c.isSelected"
+          />
+          <div class="custom-control-label">{{ c.name }}</div>
+        </label>
       </div>
-      <div class="col-lg-3 col-md-6 p-0">
-        <div class="feature-item set-bg" data-setbg="assets/img/features/2.jpg">
-          <span class="cata strategy">strategy</span>
-          <div class="fi-content text-white">
-            <h5><a href="#">Justo tempor, rutrum erat id, molestie</a></h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <a href="#" class="fi-comment">3 Comments</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 p-0">
-        <div class="feature-item set-bg" data-setbg="assets/img/features/3.jpg">
-          <span class="cata new">new</span>
-          <div class="fi-content text-white">
-            <h5><a href="#">Nullam lacinia ex eleifend orci porttitor</a></h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <a href="#" class="fi-comment">3 Comments</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-md-6 p-0">
-        <div class="feature-item set-bg" data-setbg="assets/img/features/4.jpg">
-          <span class="cata racing">racing</span>
-          <div class="fi-content text-white">
-            <h5><a href="#">Lacinia ex eleifend orci suscipit</a></h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            <a href="#" class="fi-comment">3 Comments</a>
-          </div>
-        </div>
-      </div>
+      <!-- card-body.// -->
+      <label class="btn btn-block btn-success" (click)="onCategoryFilter()">
+        Apply
+      </label>
     </div>
   </div>
-</section>
+  <div class="col-10">
+    <section class="feature-section spad">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-3 col-md-6 p-1">
+            <div
+              class="feature-item set-bg"
+              data-setbg="assets/img/features/1.jpg"
+            >
+              <span class="cata new">new</span>
+              <div class="fi-content text-white">
+                <h5><a href="/detail">Suspendisse ut justo tem por, rutrum</a></h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <a href="/detail" class="fi-comment">more <span><i class="fa fa-arrow-right"></i></span></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 p-1">
+            <div
+              class="feature-item set-bg"
+              data-setbg="assets/img/features/2.jpg"
+            >
+              <span class="cata strategy">strategy</span>
+              <div class="fi-content text-white">
+                <h5><a href="/detail">Justo tempor, rutrum erat id, molestie</a></h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <a href="/detail" class="fi-comment">more <span><i class="fa fa-arrow-right"></i></span></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 p-1">
+            <div
+              class="feature-item set-bg"
+              data-setbg="assets/img/features/3.jpg"
+            >
+              <span class="cata new">new</span>
+              <div class="fi-content text-white">
+                <h5>
+                  <a href="/detail">Nullam lacinia ex eleifend orci porttitor</a>
+                </h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <a href="/detail" class="fi-comment">more <span><i class="fa fa-arrow-right"></i></span></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 p-1">
+            <div
+              class="feature-item set-bg"
+              data-setbg="assets/img/features/4.jpg"
+            >
+              <span class="cata racing">racing</span>
+              <div class="fi-content text-white">
+                <h5><a href="/detail">Lacinia ex eleifend orci suscipit</a></h5>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <a href="/detail" class="fi-comment">more <span><i class="fa fa-arrow-right"></i></span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
 
 <section class="footer-top-section">
   <div class="container">
@@ -184,13 +228,6 @@
 
 <footer class="footer-section">
   <div class="container">
-    <ul class="footer-menu">
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Games</a></li>
-      <li><a href="#">Blog</a></li>
-      <li><a href="#">Forums</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
     <p class="copyright">
       Copyright &copy;2021 All rights reserved | This template is made with
       <i class="fa fa-heart-o" aria-hidden="true"></i> by

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgForm } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,9 +12,11 @@ export class LoginComponent implements OnInit {
 
   login = true;
   reactiveForm: FormGroup;
-  submitted:boolean = false;
+  submitted: boolean = false;
 
-  constructor(private formbuilder: FormBuilder) {
+  constructor(private formbuilder: FormBuilder,
+    private authService: AuthService
+  ) {
     this.reactiveForm = this.formbuilder.group({
       username: new FormControl('', [Validators.required]),
       firstname: new FormControl('', [Validators.required, Validators.pattern("^[^\\s]+")]),
@@ -27,18 +30,18 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  get validate(){return this.reactiveForm.controls}
+  get validate() { return this.reactiveForm.controls }
 
-  MustMatch(password: string , confirmpassword: string){
-    return (formGroup:FormGroup)=>{
+  MustMatch(password: string, confirmpassword: string) {
+    return (formGroup: FormGroup) => {
       const control = formGroup.controls[password];
       const match = formGroup.controls[confirmpassword];
-      if(match.errors && !match.errors.MustMatch){
+      if (match.errors && !match.errors.MustMatch) {
         return
       }
-      if(control.value !== match.value){
-        match.setErrors({MustMatch:true});
-      }else{
+      if (control.value !== match.value) {
+        match.setErrors({ MustMatch: true });
+      } else {
         match.setErrors(null);
       }
     }
@@ -49,6 +52,10 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-    alert(this.reactiveForm.valid);
+    const data = {
+      "username": this.reactiveForm.controls['username'].value,
+      "password": this.reactiveForm.controls['password'].value,
+    }
+    this.authService.login(data);
   }
 }

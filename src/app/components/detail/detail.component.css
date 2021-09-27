@@ -1,0 +1,40 @@
+.bgimage {
+  height: 100%;
+}
+
+.game-detail-bar {
+  background-color: #252525;
+  color: white;
+}
+
+.action-button {
+  float: right;
+  font-weight: 500;
+  background: green;
+  padding: 8px 28px;
+  border-radius: 30px;
+  width: 100%;
+}
+
+td,
+th {
+  width: 10%;
+  font-size: 16px;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 0 solid transparent;
+  border-radius: 0;
+}
+
+tbody tr {
+  max-width: 150px;
+  border-radius: 20px;
+}

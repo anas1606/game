@@ -1,0 +1,92 @@
+<div id="preloder">
+  <div class="loader"></div>
+</div>
+
+<!-- Header -->
+<header class="header-section">
+  <div class="container">
+    <a class="site-logo" href="#">
+      <img src="assets/img/logo.png" alt="" />
+    </a>
+    <div class="user-panel">
+      <a href="/login">
+        Sign out <span><i class="fa fa-sign-out"></i></span>
+      </a>
+    </div>
+
+    <div class="nav-switch">
+      <i class="fa fa-bars"></i>
+    </div>
+  </div>
+</header>
+<!-- Header End -->
+
+<!-- Body -->
+<div class="row" style="height: 100%">
+  <div class="col-4 p-0" align="left">
+    <div
+      class="bgimage spad set-bg"
+      data-setbg="assets/img/features/1.jpg"
+    ></div>
+  </div>
+
+  <div class="col-4 game-detail-bar">
+    <div class="row">
+      <div class="col-12">
+        <h3 style="color: aliceblue; padding-top: 10%">
+          {{ gamedetail.name }}
+        </h3>
+      </div>
+
+      <div class="col-12" style="padding-top: 10%; padding-bottom: 4%">
+        <div class="action-button" align="center">
+          <a href="/login" style="color: white">
+            {{ actions[gamedetail.action].name }} <span><i [class]="actions[gamedetail.action].icon"></i></span>
+          </a>
+        </div>
+      </div>
+
+      <div
+        class="col-12"
+        style="border-top-style: solid; border-width: thin; padding-top: 5%"
+      >
+        <p>This is the information about the Game</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-4">
+    <div class="col-12">
+      <h3 style="padding-top: 5%" align="center">Last Action</h3>
+    </div>
+    <div class="col-12" style="padding-top: 10%">
+      <table class="table no-wrap user-table mb-0">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let a of abcd; let i = index">
+            <td class="pl-3">
+              <span>{{ a.date }}</span>
+            </td>
+            <td class="pl-3">
+              <span>{{ a.date }}</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<!-- End Body -->
+
+<!-- Footer -->
+<footer class="footer-section">
+  <div class="container">
+    <p class="copyright">Copyright &copy;2021 All rights reserved</p>
+  </div>
+</footer>
+<!-- End Footer -->

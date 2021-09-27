@@ -1,0 +1,11 @@
+.side-nav{
+    border-right: yellow;
+    border-right-style: solid;
+    color: white;
+    padding: 2%;
+}
+
+.home-bg{
+    background-color: black;
+    opacity: 0.4;
+}

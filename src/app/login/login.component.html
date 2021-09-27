@@ -3,7 +3,7 @@
     <div class="section-title col-5">
       <div class="box" *ngIf="login">
         <h2>Login</h2>
-        <form>
+        <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
           <div class="inputBox">
             <input
               type="text"
@@ -11,7 +11,16 @@
               required
               onkeyup="this.setAttribute('value', this.value);"
               value=""
+              formControlName="username"
             />
+            <div class="err" *ngIf="submitted && validate.username.errors">
+              <div
+                *ngIf="validate.username.errors.required"
+                class="text-left text-danger"
+              >
+                *Required
+              </div>
+            </div>
             <label>Username</label>
           </div>
           <div class="inputBox">
@@ -20,18 +29,43 @@
               name="password"
               required
               value=""
-              onkeyup="this.setAttribute('value', this.value);"
-              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-              title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+              formControlName="password"
             />
+            <div class="err" *ngIf="submitted && validate.password.errors">
+              <div
+                *ngIf="validate.password.errors.required"
+                class="text-left text-danger"
+              >
+                *Required
+              </div>
+              <div
+                *ngIf="validate.password.errors.pattern"
+                class="text-left text-danger"
+              >
+                *Must contain at least one number and one uppercase and
+                lowercase letter, and at least 4 or more characters
+              </div>
+            </div>
             <label>Password</label>
           </div>
-          <input type="submit" name="sign-in" value="Sign In" />
+          <div class="row">
+            <div class="col-8" align="left">
+              <input type="submit" name="sign-in" value="Sign In" />
+            </div>
+            <div class="col-4" align="right" (click)="login = false">
+              <Label style="color: aliceblue"
+                >Register <span><i class="fa fa-arrow-right"></i></span>
+              </Label>
+            </div>
+          </div>
         </form>
       </div>
+
+      <!-- Register -->
       <div class="box" *ngIf="!login">
         <h2>Register</h2>
-        <form>
+        <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
+          <!-- First Name -->
           <div class="inputBox">
             <input
               type="text"
@@ -39,9 +73,26 @@
               required
               onkeyup="this.setAttribute('value', this.value);"
               value=""
+              formControlName="firstname"
             />
-            <label>FirstName <span style="color: red;">*</span></label>
+            <div class="err" *ngIf="submitted && validate.firstname.errors">
+              <div
+                *ngIf="validate.firstname.errors.required"
+                class="text-left text-danger"
+              >
+                *Required
+              </div>
+              <div
+                *ngIf="validate.firstname.errors.pattern"
+                class="text-left text-danger"
+              >
+                *Enter Valid Name
+              </div>
+            </div>
+            <label>FirstName <span style="color: red">*</span></label>
           </div>
+
+          <!-- Last Name -->
           <div class="inputBox">
             <input
               type="text"
@@ -49,9 +100,26 @@
               required
               onkeyup="this.setAttribute('value', this.value);"
               value=""
+              formControlName="lastname"
             />
-            <label>LastName <span style="color: red;">*</span></label>
+            <div class="err" *ngIf="submitted && validate.lastname.errors">
+              <div
+                *ngIf="validate.lastname.errors.required"
+                class="text-left text-danger"
+              >
+                *Required
+              </div>
+              <div
+                *ngIf="validate.lastname.errors.pattern"
+                class="text-left text-danger"
+              >
+                *Enter Valid Name
+              </div>
+            </div>
+            <label>LastName <span style="color: red">*</span></label>
           </div>
+
+          <!-- User Name -->
           <div class="inputBox">
             <input
               type="text"
@@ -59,22 +127,92 @@
               required
               onkeyup="this.setAttribute('value', this.value);"
               value=""
+              formControlName="username"
             />
-            <label>Username <span style="color: red;">*</span></label>
+            <div class="err" *ngIf="submitted && validate.username.errors">
+              <div
+                *ngIf="validate.username.errors.required"
+                class="text-left text-danger"
+              >
+                *Required
+              </div>
+              <div
+                *ngIf="validate.username.errors.pattern"
+                class="text-left text-danger"
+              >
+                *Enter Valid Name
+              </div>
+            </div>
+            <label>Username <span style="color: red">*</span></label>
           </div>
+
+          <!-- Password -->
           <div class="inputBox">
             <input
               type="password"
               name="password"
               required
               value=""
-              onkeyup="this.setAttribute('value', this.value);"
-              pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,}"
-              title="Must contain at least one number and one uppercase and lowercase letter, and at least 4 or more characters"
+              formControlName="password"
             />
-            <label>Password <span style="color: red;">*</span></label>
+            <div class="err" *ngIf="submitted && validate.password.errors">
+              <div
+                *ngIf="validate.password.errors.required"
+                class="text-left text-danger"
+              >
+                *Required
+              </div>
+              <div
+                *ngIf="validate.password.errors.pattern"
+                class="text-left text-danger"
+              >
+                *Must contain at least one number and one uppercase and
+                lowercase letter, and at least 4 or more characters
+              </div>
+            </div>
+            <label>Password <span style="color: red">*</span></label>
           </div>
-          <input type="submit" name="sign-in" value="Sign Up" />
+
+          <!-- Confirm Password -->
+          <div class="inputBox">
+            <input
+              type="password"
+              name="confirmpassword"
+              required
+              value=""
+              formControlName="confirmpassword"
+            />
+            <div
+              class="err"
+              *ngIf="submitted && validate.confirmpassword.errors"
+            >
+              <div
+                *ngIf="validate.confirmpassword.errors.required"
+                class="text-left text-danger"
+              >
+                *Required
+              </div>
+              <div
+                *ngIf="validate.confirmpassword.errors.MustMatch"
+                class="text-left text-danger"
+              >
+                ConfirmPassword Didn't Match
+              </div>
+            </div>
+            <label>Confirm Password <span style="color: red">*</span></label>
+          </div>
+
+          <!-- Submit -->
+          <div class="row">
+            <div class="col-8" align="left">
+              <input type="submit" name="sign-in" value="Sign Up" />
+            </div>
+            <div class="col-4" align="left" (click)="login = true">
+              <Label style="color: aliceblue">
+                <span><i class="fa fa-arrow-left"></i></span> Login
+              </Label>
+            </div>
+          </div>
         </form>
       </div>
     </div>

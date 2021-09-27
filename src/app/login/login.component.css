@@ -31,6 +31,11 @@
   position: relative;
 }
 
+.box{
+  background-color: black;
+  opacity: 0.8;
+}
+
 .box .inputBox input {
   width: 100%;
   padding: 0.625rem 0;

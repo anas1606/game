@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { DetailService } from 'src/app/services/detail.service';
 import { FeedService } from 'src/app/services/feed.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +12,10 @@ export class HomeComponent implements OnInit {
 
   selectedcategory: string = "";
 
-  constructor(private feedService: FeedService) { }
+  constructor(private feedService: FeedService,
+    private detailService: DetailService,
+    private router: Router) { }
+
   category: any;
   feed: any;
 
@@ -35,5 +40,10 @@ export class HomeComponent implements OnInit {
       this.feed = null;
       this.feed = data;
     });
+  }
+
+  navigate(id: string) {
+    this.detailService.gameid = id;
+    this.router.navigate(["/detail"])
   }
 }

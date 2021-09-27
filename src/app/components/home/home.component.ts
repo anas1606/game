@@ -16,7 +16,8 @@ export class HomeComponent implements OnInit {
     { name: "Racing", isSelected: false },
     { name: "Puzzle", isSelected: false }
   ];
-
+  feed : any;
+  
   ngOnInit(): void {
   }
 

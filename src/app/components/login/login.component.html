@@ -3,7 +3,7 @@
     <div class="section-title col-5">
       <div class="box" *ngIf="login">
         <h2>Login</h2>
-        <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="reactiveForm" (ngSubmit)="onLogin()">
           <div class="inputBox">
             <input
               type="text"
@@ -64,7 +64,7 @@
       <!-- Register -->
       <div class="box" *ngIf="!login">
         <h2>Register</h2>
-        <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
+        <form [formGroup]="reactiveForm" (ngSubmit)="onRegister()">
           <!-- First Name -->
           <div class="inputBox">
             <input

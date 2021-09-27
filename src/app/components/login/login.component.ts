@@ -50,12 +50,23 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit() {
+  onLogin() {
     this.submitted = true;
     const data = {
       "username": this.reactiveForm.controls['username'].value,
       "password": this.reactiveForm.controls['password'].value,
     }
     this.authService.login(data);
+  }
+
+  onRegister() {
+    this.submitted = true;
+    const data = {
+      "username": this.reactiveForm.controls['username'].value,
+      "password": this.reactiveForm.controls['password'].value,
+      "firstname" : this.reactiveForm.controls['firstname'].value,
+      "lastname" : this.reactiveForm.controls['lastname'].value,
+    }
+    this.authService.register(data);
   }
 }
